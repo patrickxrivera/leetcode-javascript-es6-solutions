@@ -11,18 +11,15 @@ class TreeNode {
  * @return {number}
  */
 
-const getMaxDepth = (node, depth = 0) => {
-  if (!node) return depth;
+const maxDepth = (root) => {
+  if (!root) return 0;
 
-  let leftDepth = depth,
-    rightDepth = depth;
+  const leftMax = maxDepth(root.left);
+  const rightMax = maxDepth(root.right);
 
-  const leftMax = getMaxDepth(node.left, (leftDepth += 1));
-  const rightMax = getMaxDepth(node.right, (rightDepth += 1));
+  const max = Math.max(leftMax, rightMax) + 1;
 
-  const maxDepth = Math.max(leftMax, rightMax);
-
-  return maxDepth;
+  return max;
 };
 
 /*
