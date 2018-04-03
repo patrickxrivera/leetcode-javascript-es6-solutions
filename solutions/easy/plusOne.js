@@ -5,6 +5,7 @@
 
 const plusOne = (digits) => {
   const length = digits.length;
+
   for (let i = length - 1; i >= 0; i--) {
     const currNum = digits[i];
 
