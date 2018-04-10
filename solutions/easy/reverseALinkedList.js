@@ -12,20 +12,15 @@ class ListNode {
  * @return {ListNode}
  */
 
-const reverseList = (head) => {
-  let curr = head;
-  let next = null;
-  let prev = null;
+const reverseList = (curr, prev = null, next = null) => {
+  if (!curr) return prev;
 
-  while (curr) {
-    next = curr.next;
-    curr.next = prev;
+  next = curr.next;
+  curr.next = prev;
+  prev = curr;
+  curr = next;
 
-    prev = curr;
-    curr = next;
-  }
-
-  return prev;
+  return reverseList(curr, prev, next);
 };
 
 const list = new ListNode(1);
