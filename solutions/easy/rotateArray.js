@@ -14,6 +14,13 @@ const rotate = (nums, k) => {
   }
 };
 
+// This works as well
+
+// const rotate = (nums, k) => {
+//    const toRotate = nums.splice(nums.length - k, k);
+//    nums.unshift(...toRotate)
+// };
+
 const nums = [1, 2, 3, 4];
 const k = 1;
 
