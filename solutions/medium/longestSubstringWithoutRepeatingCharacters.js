@@ -12,7 +12,7 @@ var lengthOfLongestSubstring = function(s) {
     const idx = str.indexOf(s[i]);
 
     if (idx !== -1) {
-      str = str.substr(idx + 1);
+      str = str.slice(idx + 1);
     }
 
     str += s[i];
