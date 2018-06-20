@@ -3,25 +3,19 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 
+const swap = (nums, i, lastZeroFoundAt) => {
+  const temp = nums[i];
+  nums[i] = nums[lastZeroFoundAt];
+  nums[lastZeroFoundAt] = temp;
+};
+
 const moveZeroes = (nums) => {
-  let i,
-    pointer = 0,
-    len = nums.length;
-
-  for (i = 0; i < len; i++) {
+  for (let i = 0, lastZeroFoundAt = 0; i < nums.length; i++) {
     if (nums[i] !== 0) {
-      nums[pointer] = nums[i];
-      pointer++;
+      swap(nums, i, lastZeroFoundAt);
+      lastZeroFoundAt++;
     }
-  }
-
-  for (i = pointer; pointer < len; pointer++) {
-    nums[pointer] = 0;
   }
 
   return nums;
 };
-
-const nums = [0, 1, 0, 3, 12];
-
-moveZeroes(nums);

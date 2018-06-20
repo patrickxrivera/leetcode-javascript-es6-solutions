@@ -4,25 +4,20 @@
  */
 
 const plusOne = (digits) => {
-  const length = digits.length;
+  for (let i = digits.length - 1; i >= 0; i--) {
+    const newDigit = digits[i] + 1;
 
-  for (let i = length - 1; i >= 0; i--) {
-    const currNum = digits[i];
-
-    if (currNum < 9) {
-      digits[i]++;
+    if (newDigit !== 10) {
+      digits[i] = newDigit;
       return digits;
     }
 
     digits[i] = 0;
   }
 
-  const results = Array(length + 1).fill(0);
-  results[0] = 1;
+  digits.unshift(1);
 
-  return results;
+  return digits;
 };
 
-const digits = [9, 9];
-
-plusOne(digits);
+plusOne([9]);

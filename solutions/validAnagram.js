@@ -1,29 +1,30 @@
+/* Faster than 100% of Leetcode solutions!!! */
+
 /**
  * @param {string} s
  * @param {string} t
  * @return {boolean}
  */
 
+const handleCount = (count, str, modifier) => {
+  const OFFSET = 97;
+
+  for (let i = 0; i < str.length; i++) {
+    const currCharCode = str[i].charCodeAt();
+    const currIdx = currCharCode - OFFSET;
+    count[currIdx] += 1 * modifier;
+  }
+};
+
 const isZero = (num) => num === 0;
 
 const isAnagram = (s, t) => {
-  if (s.length !== t.length) return false;
+  const INCREMENT = 1;
+  const DECREMENT = -1;
+  let count = Array(26).fill(0);
 
-  let counter = {};
+  handleCount(count, s, INCREMENT);
+  handleCount(count, t, DECREMENT);
 
-  for (let i = 0; i < s.length; i++) {
-    if (counter[s[i]] === undefined) {
-      counter[s[i]] = 1;
-    } else {
-      counter[s[i]] += 1;
-    }
-
-    if (counter[t[i]] === undefined) {
-      counter[t[i]] = -1;
-    } else {
-      counter[t[i]] -= 1;
-    }
-  }
-
-  return Object.values(counter).every(isZero);
+  return count.every(isZero);
 };
