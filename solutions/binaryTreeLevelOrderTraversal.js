@@ -25,8 +25,8 @@ const solution = {
       this.arr.push([]);
     }
 
-    const arrLevel = this.arr[level - 1];
-    arrLevel.push(root.val);
+    const currLevel = this.arr[level - 1];
+    currLevel.push(root.val);
 
     this._search(root.left, level + 1);
     this._search(root.right, level + 1);
