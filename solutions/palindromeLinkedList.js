@@ -1,10 +1,9 @@
-// Notes: https://skyyen999.gitbooks.io/-leetcode-with-javascript/content/questions/234md.html
-
 // Definition for singly-linked list.
-
-function ListNode(val) {
-  this.val = val;
-  this.next = null;
+class ListNode {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+  }
 }
 
 /**
@@ -12,11 +11,11 @@ function ListNode(val) {
  * @return {boolean}
  */
 
-const getMidNode = (node) => {
-  let slow = node,
-    fast = node;
+const getMiddleNode = (head) => {
+  let slow = head;
+  let fast = head;
 
-  while (fast !== null && fast.next !== null) {
+  while (fast.next && fast.next.next) {
     slow = slow.next;
     fast = fast.next.next;
   }
@@ -24,31 +23,41 @@ const getMidNode = (node) => {
   return slow.next;
 };
 
-const reverseList = (head) => {
-  let prev = null,
-    next = null,
-    curr = head;
+const reverse = (curr, prev = null, next = null) => {
+  if (!curr) return prev;
 
-  while (curr !== null) {
-    next = curr.next;
-    curr.next = prev;
-    prev = curr;
-    curr = next;
+  next = curr.next;
+  curr.next = prev;
+
+  prev = curr;
+  curr = next;
+
+  return reverse(curr, prev, next);
+};
+
+var isPalindrome = function(head) {
+  const middleNode = getMiddleNode(head);
+  let reversedSecondHalf = reverse(middleNode);
+
+  while (reversedSecondHalf) {
+    if (reversedSecondHalf.val !== head.val) return false;
+
+    reversedSecondHalf = reversedSecondHalf.next;
+    head = head.next;
   }
 
-  return prev;
+  return true;
 };
 
-const setUpComparisonList = (head) => reverseList(getMidNode(head));
+const c = new ListNode('c');
+const a = new ListNode('a');
+const t = new ListNode('t');
+const e = new ListNode('a');
+const r = new ListNode('c');
 
-const isPalindrome = (head) => {
-  const comparisonList = setUpComparisonList(head);
-  return comparisonList;
-};
+c.next = a;
+a.next = t;
+t.next = e;
+e.next = r;
 
-const list = new ListNode('t');
-list.next = new ListNode('o');
-list.next.next = new ListNode('p');
-list.next.next.next = new ListNode('t');
-
-isPalindrome(list);
+isPalindrome(c);

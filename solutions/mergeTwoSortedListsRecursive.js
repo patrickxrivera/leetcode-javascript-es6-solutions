@@ -22,20 +22,13 @@ const mergeTwoLists = (l1, l2) => {
     return l2;
   }
 
-  const dummy = new ListNode();
-  const pointer = dummy;
-
   if (l1.val <= l2.val) {
-    pointer.next = l1;
-    pointer.next.next = mergeTwoLists(l1.next, l2);
+    l1.next = mergeTwoLists(l1.next, l2);
+    return l1;
   } else {
-    pointer.next = l2;
-    pointer.next.next = mergeTwoLists(l1, l2.next);
+    l2.next = mergeTwoLists(l1, l2.next);
+    return l2;
   }
-
-  const head = dummy.next;
-
-  return head;
 };
 
 const l1 = new ListNode(1);
