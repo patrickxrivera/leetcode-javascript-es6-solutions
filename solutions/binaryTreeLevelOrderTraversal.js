@@ -19,19 +19,17 @@ const solution = {
   },
 
   _search(root, level) {
-    if (root) {
-      if (this.arr.length < level) {
-        this.arr.push([]);
-      }
+    if (!root) return;
 
-      const arrLevel = this.arr[level - 1];
-      arrLevel.push(root.val);
-
-      this._search(root.left, level + 1);
-      this._search(root.right, level + 1);
-      return;
+    if (this.arr.length < level) {
+      this.arr.push([]);
     }
-    return;
+
+    const arrLevel = this.arr[level - 1];
+    arrLevel.push(root.val);
+
+    this._search(root.left, level + 1);
+    this._search(root.right, level + 1);
   }
 };
 

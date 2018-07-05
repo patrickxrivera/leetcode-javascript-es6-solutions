@@ -12,13 +12,11 @@ function TreeNode(val) {
 
 const getRightHalf = (nums, midpoint) => nums.slice(midpoint + 1);
 
-const createRightHalf = (nums, midpoint) =>
-  sortedArrayToBST(getRightHalf(nums, midpoint));
+const createRightHalf = (nums, midpoint) => sortedArrayToBST(getRightHalf(nums, midpoint));
 
 const getLeftHalf = (nums, midpoint) => nums.slice(0, midpoint);
 
-const createLeftHalf = (nums, midpoint) =>
-  sortedArrayToBST(getLeftHalf(nums, midpoint));
+const createLeftHalf = (nums, midpoint) => sortedArrayToBST(getLeftHalf(nums, midpoint));
 
 const sortedArrayToBST = (nums) => {
   if (nums.length === 0) return null;
