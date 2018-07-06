@@ -3,19 +3,17 @@
  * @return {number}
  */
 
-var maxSubArray = function(nums) {
-  let overallMax = nums[0],
-    currentMax = nums[0];
+const getMax = (currStreak) => (acc, curr) => {
+  const newStreak = curr + currStreak;
 
-  for (let i = 1; i < nums.length; i++) {
-    const currNum = nums[i];
+  currStreak = Math.max(newStreak, curr);
 
-    currentMax = Math.max(currNum, currentMax + currNum);
-    overallMax = Math.max(currentMax, overallMax);
-  }
-
-  return overallMax;
+  return Math.max(currStreak, acc);
 };
+
+const maxSubArray = (nums) => nums.reduce(getMax(-Infinity), -Infinity);
+
+maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]);
 
 const nums = [-2, 3, -3, 4, -1, 2, 1, -5, 4];
 
