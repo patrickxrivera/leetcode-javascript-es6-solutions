@@ -4,23 +4,13 @@
  */
 
 const maxProfit = (prices) => {
-  let minPrice = Infinity;
-  let maxProfit = 0;
+  let max = 0;
+  let currMin = Math.min(prices[0], prices[1]);
 
-  for (let i = 0; i < prices.length; i++) {
-    const currNum = prices[i];
-
-    const potentialProfit = currNum - minPrice;
-
-    maxProfit = Math.max(potentialProfit, maxProfit);
-    minPrice = Math.min(currNum, minPrice);
+  for (let i = 1; i < prices.length; i++) {
+    currMin = Math.min(currMin, prices[i]);
+    max = Math.max(prices[i] - currMin, max);
   }
 
-  return maxProfit;
+  return max;
 };
-
-const isNewMin = (currNum, min) => currNum < min;
-
-const prices = [20, 3, 6];
-
-maxProfit(prices);
