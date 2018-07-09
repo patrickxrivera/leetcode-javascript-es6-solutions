@@ -3,18 +3,14 @@
  * @return {number}
  */
 
-const getMax = (currStreak) => (acc, curr) => {
-  const newStreak = curr + currStreak;
+const maxSubArray = (nums) => {
+  let max = -Infinity;
+  let streak = -Infinity;
 
-  currStreak = Math.max(newStreak, curr);
+  for (let i = 0; i < nums.length; i++) {
+    streak = Math.max(nums[i], streak + nums[i]);
+    max = Math.max(max, streak);
+  }
 
-  return Math.max(currStreak, acc);
+  return max;
 };
-
-const maxSubArray = (nums) => nums.reduce(getMax(-Infinity), -Infinity);
-
-maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]);
-
-const nums = [-2, 3, -3, 4, -1, 2, 1, -5, 4];
-
-maxSubArray(nums);

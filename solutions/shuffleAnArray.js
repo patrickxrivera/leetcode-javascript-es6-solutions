@@ -19,18 +19,16 @@ Solution.prototype.reset = function() {
  * @return {number[]}
  */
 Solution.prototype.shuffle = function() {
-  let results = this.originalArray.slice();
+  let shuffledArray = this.originalArray.slice();
 
-  for (let i = 0; i < results.length; i++) {
-    const randNum = this._randomIntFromInterval(i, this.upperBound);
-    const temp = results[i];
-    results[i] = results[randNum];
-    results[randNum] = temp;
-  }
+  shuffledArray.forEach((num, idx) => {
+    const randNum = this.randUpTo(idx, this.upperBound);
+    [shuffledArray[idx], shuffledArray[randNum]] = [shuffledArray[randNum], shuffledArray[idx]];
+  });
 
-  return results;
+  return shuffledArray;
 };
 
-Solution.prototype._randomIntFromInterval = function(min, max) {
+Solution.prototype.randUpTo = function(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
