@@ -2,7 +2,7 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
-var groupAnagrams = (strs) => {
+const groupAnagrams = (strs) => {
   if (strs.length === 0) return [[]];
 
   const output = [];
