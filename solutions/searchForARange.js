@@ -3,48 +3,49 @@
  * @param {number} target
  * @return {number[]}
  */
-var findFirst = function(nums, target) {
-  let idx = -1,
-    L = 0,
-    R = nums.length - 1;
+var findFirst = function(nums, target, idx, L, R) {
+  if (L > R) return idx;
 
-  while (L <= R) {
-    let M = parseInt((R - L) / 2 + L);
+  let M = Math.floor((R - L) / 2 + L);
 
-    if (nums[M] === target) {
-      idx = M;
-    }
-    if (nums[M] >= target) {
-      R = M - 1;
-    } else {
-      L = M + 1;
-    }
+  if (nums[M] === target) {
+    idx = M;
+  }
+  if (nums[M] >= target) {
+    R = M - 1;
+  } else {
+    L = M + 1;
   }
 
-  return idx;
+  return findFirst(nums, target, idx, L, R);
 };
 
-var findLast = function(nums, target) {
-  let idx = -1,
-    L = 0,
-    R = nums.length - 1;
+var findLast = function(nums, target, idx, L, R) {
+  if (L > R) return idx;
 
-  while (L <= R) {
-    let M = parseInt((R - L) / 2 + L);
+  let M = Math.floor((R - L) / 2 + L);
 
-    if (nums[M] === target) {
-      idx = M;
-    }
-    if (nums[M] <= target) {
-      L = M + 1;
-    } else {
-      R = M - 1;
-    }
+  if (nums[M] === target) {
+    idx = M;
+  }
+  if (nums[M] <= target) {
+    L = M + 1;
+  } else {
+    R = M - 1;
   }
 
-  return idx;
+  return findLast(nums, target, idx, L, R);
 };
 
 var searchRange = function(nums, target) {
-  return [findFirst(nums, target), findLast(nums, target)];
+  let idx = -1,
+    L = 0,
+    R = nums.length - 1;
+
+  return [findFirst(nums, target, idx, L, R), findLast(nums, target, idx, L, R)];
 };
+
+const nums = [5, 7, 8, 8, 8, 10];
+const target = 8;
+
+searchRange(nums, target);
